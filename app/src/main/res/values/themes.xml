@@ -3,6 +3,7 @@
     <style name="Base.Theme.AviatorTest" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:screenOrientation">landscape</item>
     </style>
 
     <style name="Theme.AviatorTest" parent="Base.Theme.AviatorTest" />

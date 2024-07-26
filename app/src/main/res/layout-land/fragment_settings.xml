@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.settings.SettingsFragment">
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/btn_back"
+        android:layout_margin="15dp"
+        />
+    
+    <TextView
+        android:id="@+id/tvClassic"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/ivClassic"
+        app:layout_constraintEnd_toEndOf="@id/ivClassic"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        android:text="@string/classic"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        />
+    
+    <ImageView
+        android:id="@+id/ivClassic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="257:144"
+        android:background="@drawable/img_border"
+        android:src="@drawable/game_background_1"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivThunder"
+        app:layout_constraintTop_toBottomOf="@id/tvClassic"
+        android:padding="1dp"
+        />
+
+    <ImageView
+        android:id="@+id/rbClassic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/ivClassic"
+        app:layout_constraintEnd_toEndOf="@id/ivClassic"
+        app:layout_constraintTop_toBottomOf="@id/ivClassic"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/red_dot"
+        />
+
+    <TextView
+        android:id="@+id/tvThunder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/ivThunder"
+        app:layout_constraintEnd_toEndOf="@id/ivThunder"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        android:text="@string/thunderstorm"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        />
+
+    <ImageView
+        android:id="@+id/ivThunder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="257:144"
+        android:background="@drawable/img_border"
+        android:layout_marginStart="15dp"
+        android:src="@drawable/game_background_2"
+        app:layout_constraintStart_toEndOf="@id/ivClassic"
+        app:layout_constraintEnd_toStartOf="@id/ivBlueSky"
+        app:layout_constraintTop_toTopOf="@id/ivClassic"
+        android:padding="1dp"
+        />
+
+    <ImageView
+        android:id="@+id/rbThunder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/ivThunder"
+        app:layout_constraintEnd_toEndOf="@id/ivThunder"
+        app:layout_constraintTop_toBottomOf="@id/ivThunder"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/white_dot"
+        />
+
+    <TextView
+        android:id="@+id/tvBlueSky"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/ivBlueSky"
+        app:layout_constraintEnd_toEndOf="@id/ivBlueSky"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        android:text="@string/blue_sky"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        />
+
+    <ImageView
+        android:id="@+id/ivBlueSky"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="257:144"
+        android:background="@drawable/img_border"
+        android:layout_marginHorizontal="15dp"
+        android:src="@drawable/game_background_3"
+        app:layout_constraintStart_toEndOf="@id/ivThunder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivClassic"
+        android:padding="1dp"
+        />
+
+    <ImageView
+        android:id="@+id/rbBlueSky"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/ivBlueSky"
+        app:layout_constraintEnd_toEndOf="@id/ivBlueSky"
+        app:layout_constraintTop_toBottomOf="@id/ivBlueSky"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/white_dot"
+        />
+
+    <ImageView
+        android:id="@+id/vibrationBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="353:44"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rbClassic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/vibration_background"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/vibrationBackground"
+        app:layout_constraintBottom_toBottomOf="@id/vibrationBackground"
+        app:layout_constraintStart_toStartOf="@id/vibrationBackground"
+        android:layout_marginStart="20dp"
+        android:text="@string/vibration"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchVibration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/vibrationBackground"
+        app:layout_constraintBottom_toBottomOf="@id/vibrationBackground"
+        app:layout_constraintEnd_toEndOf="@id/vibrationBackground"
+        android:layout_marginEnd="20dp"
+        app:track="@drawable/my_track"
+        android:thumb="@drawable/my_thumb"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
