@@ -7,7 +7,19 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     tools:context=".ui.main.MainActivity"
-    android:background="@drawable/game_background_1">
+    >
+
+    <ImageView
+        android:id="@+id/mainBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/game_background_1"
+        android:scaleType="centerCrop"
+        />
 
     <ImageView
         android:id="@+id/fire"
@@ -16,7 +28,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/fire"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintDimensionRatio="10:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

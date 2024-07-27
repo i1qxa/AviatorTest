@@ -53,4 +53,5 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.coil)
+    implementation(libs.androidx.datastore.preferences)
 }

@@ -155,7 +155,7 @@
         android:textColor="@color/white"
         />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/switchVibration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -163,8 +163,10 @@
         app:layout_constraintBottom_toBottomOf="@id/vibrationBackground"
         app:layout_constraintEnd_toEndOf="@id/vibrationBackground"
         android:layout_marginEnd="20dp"
-        app:track="@drawable/my_track"
+        android:textOff="OFF"
         android:thumb="@drawable/my_thumb"
+        android:track="@drawable/my_track"
+        tools:ignore="UseSwitchCompatOrMaterialXml"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
