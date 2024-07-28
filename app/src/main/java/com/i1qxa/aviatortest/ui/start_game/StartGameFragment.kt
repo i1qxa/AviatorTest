@@ -11,6 +11,7 @@ import com.i1qxa.aviatortest.databinding.FragmentStartGameBinding
 import com.i1qxa.aviatortest.domain.dataStore
 import com.i1qxa.aviatortest.domain.highScoreKey
 import com.i1qxa.aviatortest.domain.launchNewFragment
+import com.i1qxa.aviatortest.ui.game.GameFragment
 import com.i1qxa.aviatortest.ui.settings.SettingsFragment
 import kotlinx.coroutines.launch
 
@@ -34,6 +35,9 @@ class StartGameFragment : Fragment() {
     private fun setupBtnClickListeners(){
         binding.btnSettings?.setOnClickListener {
             parentFragmentManager.launchNewFragment(SettingsFragment())
+        }
+        binding.btnStart?.setOnClickListener {
+            parentFragmentManager.launchNewFragment(GameFragment())
         }
     }
 
