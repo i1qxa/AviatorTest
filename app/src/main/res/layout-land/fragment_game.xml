@@ -24,7 +24,22 @@
         android:src="@drawable/btn_settings"
         />
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
+<!--    <com.google.android.material.progressindicator.CircularProgressIndicator-->
+<!--        android:id="@+id/progressTimer"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintDimensionRatio="1:1"-->
+<!--        app:layout_constraintHeight_percent="0.4"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/btnSettings"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/btnSettings"-->
+<!--        android:layout_marginEnd="30dp"-->
+<!--        app:trackColor="#CA2121"-->
+<!--        app:indicatorColor="@color/white"-->
+<!--        android:progress="25"-->
+<!--        android:max="100"-->
+<!--        />-->
+
+    <ProgressBar
         android:id="@+id/progressTimer"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -33,15 +48,16 @@
         app:layout_constraintEnd_toStartOf="@id/btnSettings"
         app:layout_constraintTop_toBottomOf="@id/btnSettings"
         android:layout_marginEnd="30dp"
-        app:trackColor="@color/white"
-        app:indicatorColor="#CA2121"
-        android:progress="25"
-        android:max="100"
+        android:progressDrawable="@drawable/round_progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:background="@drawable/progress_background"
+        android:max="40"
+        android:progress="24"
         />
 
     <TextView
         android:id="@+id/timerValue"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/progressTimer"
         app:layout_constraintEnd_toEndOf="@id/progressTimer"
@@ -51,7 +67,7 @@
         tools:text="00:23"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         />
 
@@ -84,7 +100,7 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:paddingVertical="5dp"
         android:background="@drawable/score_background"
         tools:text="Score:368"

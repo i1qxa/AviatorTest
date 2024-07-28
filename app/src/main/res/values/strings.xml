@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">AviatorTest</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="start">START</string>
     <string name="high_score">High Score:%1$d</string>
+    <string name="score">Score:%1$d</string>
     <string name="classic">Classic</string>
     <string name="thunderstorm">Thunderstorm</string>
     <string name="blue_sky">Blue sky</string>
     <string name="vibration">Vibration</string>
     <string name="new_game">NEW GAME</string>
+    <string name="great">GREAT!</string>
+    <string name="continue_btn">CONTINUE</string>
+    <string name="try_again">TRY AGAIN</string>
 </resources>

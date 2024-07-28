@@ -1,19 +1,44 @@
 package com.i1qxa.aviatortest.ui.game
 
+import android.app.Application
 import android.view.View
 import android.widget.ImageView
+import androidx.datastore.preferences.core.edit
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.i1qxa.aviatortest.domain.ANIM_DURATION_IN_MILS
+import com.i1qxa.aviatortest.domain.BASE_SCORE_POINT
+import com.i1qxa.aviatortest.domain.GAME_DURATION_IN_SECONDS
 import com.i1qxa.aviatortest.domain.START_AMOUNT_AIRPLANES
+import com.i1qxa.aviatortest.domain.dataStore
 import com.i1qxa.aviatortest.domain.game_data.AirplaneCard
 import com.i1qxa.aviatortest.domain.game_data.AirplaneCoordinate
 import com.i1qxa.aviatortest.domain.game_data.EnumAirplanes
 import com.i1qxa.aviatortest.domain.game_data.MoveDirections
+import com.i1qxa.aviatortest.domain.highScoreKey
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class GameViewModel : ViewModel() {
+class GameViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val context = application.applicationContext
+    private val _launchVibrationLD = MutableLiveData<Boolean>()
+    val launchVibrationLD:LiveData<Boolean>
+        get() = _launchVibrationLD
+    private var timerScope: CoroutineScope? = null
+    private val _currentScoreLD = MutableLiveData<Int>()
+    val currentScoreLD: LiveData<Int>
+        get() = _currentScoreLD
+    private val _gameTimerLD = MutableLiveData<Int>()
+    val gameTimer: LiveData<Int>
+        get() = _gameTimerLD
+    private val _isWinLD = MutableLiveData<Boolean>()
+    val isWinLD: LiveData<Boolean>
+        get() = _isWinLD
     private var topLeftCorner = AirplaneCoordinate(0F, 0F)
     private var bottomRightCorner = AirplaneCoordinate(0F, 0F)
     private var listOfAirplanes = mutableListOf<AirplaneCard>()
@@ -23,7 +48,9 @@ class GameViewModel : ViewModel() {
     val listOfAirplanesLD: LiveData<List<AirplaneCard>>
         get() = _listOfAirplanesLD
 
-    fun setupListOfAirplanes(listViews: List<ImageView>) {
+    fun launchGame(listViews: List<ImageView>) {
+        _currentScoreLD.value = 0
+        _gameTimerLD.value = 0
         topLeftCorner = AirplaneCoordinate(listViews[0].x, listViews[0].y)
         bottomRightCorner = AirplaneCoordinate(listViews[15].x, listViews[15].y)
         var counter = 0
@@ -46,6 +73,43 @@ class GameViewModel : ViewModel() {
             }
         }
         _listOfAirplanesLD.value = listOfAirplanes
+        launchCountDawnTimer()
+    }
+
+    fun cancelOrLaunchCountDawnTimer() {
+        if (timerScope != null) {
+            timerScope?.cancel()
+            timerScope = null
+        } else {
+            launchCountDawnTimer()
+        }
+
+    }
+
+    private fun launchCountDawnTimer() {
+        viewModelScope.launch {
+            timerScope = this
+            var timer = 0
+            while (timer < GAME_DURATION_IN_SECONDS) {
+                delay(1000)
+                timer++
+                _gameTimerLD.postValue(timer)
+            }
+            context.dataStore.data.collect { preferences ->
+                val highScore = preferences[highScoreKey] ?: 0
+                val currentScore = _currentScoreLD.value ?: 0
+                if (currentScore > highScore) {
+                    context.dataStore.edit {
+                        it[highScoreKey] = currentScore
+                    }
+                }
+            }
+        }
+    }
+
+    fun checkRes() {
+        val gameResult = (_currentScoreLD.value ?: 0) > 0
+        _isWinLD.postValue(gameResult)
     }
 
     private fun addAirplane() {
@@ -88,8 +152,11 @@ class GameViewModel : ViewModel() {
                                 addAirplane()
                             }
                         }
+                        val currentScore = _currentScoreLD.value ?: 1
+                        _currentScoreLD.value = currentScore + BASE_SCORE_POINT
+                        _launchVibrationLD.postValue(true)
                     }
-                }else {
+                } else {
                     airplaneCard.airplaneView.animate().apply {
                         duration = ANIM_DURATION_IN_MILS
                         x(targetAirplaneCard.airplaneView.x)
